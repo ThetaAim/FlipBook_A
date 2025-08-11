@@ -15,7 +15,11 @@ const pageImages = [
   "/pages/3.png",
   "/pages/4.png",
   "/pages/5.png",
-  "/pages/6.png"
+  "/pages/6.png",
+  "/pages/7.png",
+  "/pages/8.png",
+  "/pages/9.png",
+  "/pages/10.png",
 ];
 
 function App() {
@@ -24,45 +28,21 @@ function App() {
   const [pageIndex, setPageIndex] = useState(0);
 
   // Helper to get the instance safely
-const getInst = () => {
-  try {
-    const inst = bookRef.current?.pageFlip?.();
-    if (inst) {
-      const currentPage = inst.getCurrentPageIndex();
-      const totalPages = inst.getPageCount();
-      if (currentPage === totalPages - 1) {
-        console.log("here")
-        
-      }
+  const getInst = () => {
+    try {
+      return bookRef.current?.pageFlip?.();
+    } catch {
+      return null;
     }
-    return inst;
-  } catch {
-    return null;
-  }
-};
+  };
 
   const handleFlip = () => {
-  const inst = getInst();
-  if (!inst) return;
-
-  const idx = typeof inst.getCurrentPageIndex === "function"
-    ? inst.getCurrentPageIndex()
-    : 0;
-
-  const total = typeof inst.getPageCount === "function"
-    ? inst.getPageCount()
-    : pageImages.length;
-
-  setPageIndex(idx);
-
-  if (idx === 0) {
-    setPhase("closed");
-  } else if (idx === total - 1) {
-    setPhase("end-book");   // <- last page: use your end-book state
-  } else {
-    setPhase("open");
-  }
-};
+    const inst = getInst();
+    if (!inst) return;
+    const idx = typeof inst.getCurrentPageIndex === "function" ? inst.getCurrentPageIndex() : 0;
+    setPageIndex(idx);
+    setPhase(idx > 0 ? "open" : "closed");
+  };
 
   const handleCoverClick = () => {
     const inst = getInst();
@@ -136,10 +116,10 @@ const getInst = () => {
           height={PAGE_H}
           drawShadow
           maxShadowOpacity={1}
-          // style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "100%" }}
           showCover
+          showPageCorners
           useMouseEvents
-          showPageCorners={false}
         >
           {pageImages.map((src, i) => (
             <div key={i} className="page">

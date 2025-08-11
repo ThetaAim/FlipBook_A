@@ -11,42 +11,43 @@ html, body, #root { height: 100%; margin: 0; }
   justify-content: center;
   background: radial-gradient(circle at center, rgba(0, 20, 60, 1) 0%, rgba(0, 10, 30, 0.95) 35%, rgba(0, 0, 0, 1) 100%);
 }
-.book-wrap {
-}
+
 /* Optional background image */
-/* .bg-image {
+.bg-image {
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
-  object-fit: cover; 
+  object-fit: cover; /* or contain/fill */
   object-position: center 15%;
   opacity: 0.2;
   pointer-events: none;
-  z-index: -1;       
+  z-index: -1;       /* guaranteed behind */
   display: block;
-} */
+}
 
 /* Book container */
-/* .book-wrap {
-  width: 600px;   
-  height: 560px;  
+.book-wrap {
+  width: 600px;   /* 2 * 400 */
+  height: 560px;  /* page height */
   position: relative;
   perspective: 1200px;
-} */
+  transform: scale(1);
+  transform-origin: center;
+}
 
 /* Spine */
-/* .book-wrap::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
-  height: 100%;
-  width: 6px; 
+.book-wrap::before {
+  /* content: ""; */
+  /* position: absolute; */
+  /* top: 0; left: 50%; */
+  /* transform: translateX(-50%); */
+  /* height: 100%;
+  width: 6px; */
   background: rgba(0,0,0,0.1);
   box-shadow: 0 0 36px 18px rgba(0,0,0,0.15);
   pointer-events: none;
   z-index: 10;
-} */
+}
 
 /* Page */
 .page {
@@ -54,8 +55,7 @@ html, body, #root { height: 100%; margin: 0; }
   background: #fff;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.60);
-  
+  box-shadow: 0 6px 20px rgba(0,0,0,0.10);
 }
 
 /* Fill the page box */
@@ -77,9 +77,6 @@ html, body, #root { height: 100%; margin: 0; }
 }
 
 
-/* ------------- */
-
-
 /* Gutter shadows (keep only side-specific widths) */
 .book-wrap .page:nth-child(odd)::before,
 .book-wrap .page:nth-child(even)::before {
@@ -97,52 +94,11 @@ html, body, #root { height: 100%; margin: 0; }
   background: linear-gradient(to left, rgba(0,0,0,0.9), rgba(0,0,0,0));
 }
 
-
-/* ------------- */
-
-
-/* Cover GLIDE LOCATIONS */
+/* Cover centering / glide */
 .flipbook { transition: transform 420ms ease; will-change: transform; }
-.book-wrap.closed .flipbook { transform: translateX(-30%) translateY(2%) scale(1.2); }
-.book-wrap.glide .flipbook {transform: translateX(0%) translateY(0%) scale(1.2); /* try 40–60% */}
+.book-wrap.closed .flipbook { transform: translateX(-200px) scale(1); }
+.book-wrap.glide  .flipbook { transform: translateX(0) scale(1); }
 .book-wrap.open   .flipbook { transform: translateX(0) scale(1.3); }
-/* Last page state: glide the book to the right by one page width */
-
-.book-wrap.end-book .flipbook { transform: translateX(30%) translateY(2%) scale(1.2); }
 
 /* Cover click overlay */
 .cover-hit { position: absolute; inset: 0; background: transparent; border: 0; cursor: pointer; }
-
-
-/* ------------- */
-
-
-/* ARROWS  */
-.nav-arrow {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  border: none;
-  background: rgba(0,0,0,0.55);
-  color: #fff;
-  font-size: 20px;
-  line-height: 44px;
-  text-align: center;
-  cursor: pointer;
-  z-index: 1000;
-  transition: background 120ms ease, transform 120ms ease, opacity 120ms ease;
-}
-.nav-arrow:hover { background: rgba(0,0,0,0.75); transform: translateY(-50%) scale(1.06); }
-.nav-arrow:disabled { opacity: 0.35; cursor: default; }
-
-.nav-prev { left: 30px; }
-.nav-next { right: 30px; }
-
-
-
-
-
-

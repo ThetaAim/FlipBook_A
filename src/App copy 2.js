@@ -136,10 +136,10 @@ const getInst = () => {
           height={PAGE_H}
           drawShadow
           maxShadowOpacity={1}
-          // style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "100%" }}
           showCover
+          showPageCorners
           useMouseEvents
-          showPageCorners={false}
         >
           {pageImages.map((src, i) => (
             <div key={i} className="page">
