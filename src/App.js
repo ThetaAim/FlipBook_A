@@ -10,12 +10,12 @@ const PAGE_H = 380; // px
 const ENABLE_GLIDE = true;
 
 const pageImages = [
-  "/pages/1.png",
-  "/pages/2.png",
-  "/pages/3.png",
-  "/pages/4.png",
-  "/pages/5.png",
-  "/pages/6.png"
+  `${BASE}/pages/1.png`,
+  `${BASE}/pages/2.png`,
+  `${BASE}/pages/3.png`,
+  `${BASE}/pages/4.png`,
+  `${BASE}/pages/5.png`,
+  `${BASE}/pages/6.png`,
 ];
 
 function App() {
