@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import HTMLFlipBook from "react-pageflip";
 
+const BASE = process.env.PUBLIC_URL || "";
+
 // Page size (one page)
 const PAGE_W = 500; // px
 const PAGE_H = 380; // px
